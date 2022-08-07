@@ -6,7 +6,7 @@ import 'nprogress/nprogress.css' // 引入进度条样式
 // 不需要导出 只需要代码执行
 // 前置守卫
 const whileList = ['/login', '/404'] // 定义白名单
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   NProgress.start() // 开启进度条
   // to and from are both route objects. must call `next`.
   if (store.getters.token) {
@@ -15,6 +15,11 @@ router.beforeEach((to, from, next) => {
       // 如果要访问的是登录页
       next('/') // 跳到主页
     } else {
+      if (!store.getters.userId) {
+        // 如果没有id这个值 才会调用 vuex的获取资料的action
+        await store.dispatch('user/getUserInfo')
+        // 为什么要写await 因为我们想获取完资料再去放行
+      }
       next()
     }
   } else {
