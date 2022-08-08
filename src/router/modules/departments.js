@@ -10,7 +10,8 @@ export default {
     component: () => import('@/views/departments'),
     // 路由元信息，放任何内容
     meta: {
-      title: '组织架构' // 左侧导航读取使用
+      title: '组织架构', // 左侧导航读取使用
+      icon: 'tree'
     }
   }]
 }

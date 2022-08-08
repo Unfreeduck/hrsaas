@@ -10,7 +10,8 @@ export default {
     component: () => import('@/views/salarys'),
     // 路由元信息，放任何内容
     meta: {
-      title: '工资' // 左侧导航读取使用
+      title: '工资', // 左侧导航读取使用
+      icon: 'money'
     }
   }]
 }
